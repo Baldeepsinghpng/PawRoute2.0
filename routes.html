@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Route Lab — PawRoute</title>
+<meta name="description" content="Watch PawRoute build the shortest route live in your browser, then estimate what it could save you.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="main">
+
+<header class="sky hero" style="min-height:auto;padding:160px 0 70px"><div class="rays" style="--ry:30%"></div><div class="halo" style="--hy:30%"></div><div class="clouds" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="sparks" aria-hidden="true"></div>
+  <div class="wrap"><h1 style="font-size:clamp(3rem,7vw,5.4rem)">The <em>Route Lab</em></h1>
+  <p class="lead">A real algorithm running in your browser. The faint dotted line is an unplanned day. The golden line is PawRoute.</p></div>
+</header>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="map">
+    <svg id="route-svg" viewBox="0 0 600 400" data-stops="10" role="img" aria-label="A map showing an unplanned route and the shorter PawRoute path through the same stops"></svg>
+    <div class="bar">
+      <div class="pills" id="demo-stats" aria-live="polite"></div>
+      <div class="ctl"><label for="stops" style="margin:0">Stops: <b id="stops-val">10</b></label>
+        <input type="range" id="stops" min="3" max="12" value="10" style="width:150px;margin:0">
+        <button class="btn sm" id="shuffle">New day</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="tint"><div class="wrap">
+  <div class="center"><h2>How it thinks</h2></div>
+  <div class="algo">
+    <div class="pillar"><div class="num">i.</div><h3>A first pass</h3><p>From the van, always visit the closest client that is left. Quick and decent, but often tangled.</p></div>
+    <div class="pillar"><div class="num">ii.</div><h3>Untangling</h3><p>The route tries reversing stretches of itself. Whenever two crossing legs get shorter, it keeps the change.</p></div>
+    <div class="pillar"><div class="num">iii.</div><h3>Real-world rules</h3><p>The full product adds road times, appointment windows, breaks and breed durations on top.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="center" style="margin-bottom:3rem"><h2>What could you <em>gain?</em></h2><p class="lead">Move the sliders to match your week.</p></div>
+  <div class="calc" id="calc">
+    <div>
+      <label for="c-dogs">Dogs per day <b id="c-dogs-v"></b></label><input id="c-dogs" type="range" min="3" max="14" value="7">
+      <label for="c-km">Driving per day <b id="c-km-v"></b></label><input id="c-km" type="range" min="30" max="250" value="110">
+      <label for="c-price">Average price per groom <b id="c-price-v"></b></label><input id="c-price" type="range" min="25" max="120" value="55">
+    </div>
+    <div class="center">
+      <p>Possible extra income each month</p><div class="out gold-text" id="o-rev">€0</div>
+      <p style="margin-top:1rem"><b id="o-hrs"></b> saved, <b id="o-dogs"></b> dogs a month</p>
+    </div>
+  </div>
+  <p class="fine center">An estimate that assumes 27% less driving plus rough fuel and time costs. It is not a guarantee.</p>
+</div></section>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>
